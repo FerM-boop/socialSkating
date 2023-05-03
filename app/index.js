@@ -2,18 +2,18 @@ import { ImageBackground, StyleSheet, Text, View } from "react-native";
 import { Link } from "expo-router";
 import { Button } from "react-native-web";
 
-const gifSource = {uri: '../assets/skate_gif.gif'}
+const gifSource = require('../assets/skate_gif.gif')
 
 export default function Page() {
   return (
-    <View style={styles.container}>
-      <ImageBackground source={gifSource} resizeMode="cover" style={styles.image}>
+    <ImageBackground source={gifSource} resizeMode="cover" style={styles.image}>
+      <View style={styles.container}> 
         <View style={styles.main}>
           <Text style={styles.title}>Social Skating</Text>
           <Text style={styles.subtitle}>A social media by skaters for skaters.</Text>
         </View>
-      </ImageBackground>
-    </View>
+      </View>
+    </ImageBackground>
   );
 }
 
@@ -24,6 +24,8 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     justifyContent: 'center',
+    height: 'auto',
+    width: 'auto',
   },
   main: {
     flex: 1,

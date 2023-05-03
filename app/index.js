@@ -1,21 +1,23 @@
 import { ImageBackground, StyleSheet, Text, View } from "react-native";
-import { Link } from "expo-router";
+import { useRouter } from "expo-router";
 import { Button } from "react-native";
 
 const gifSource = require('../assets/skate_gif.gif')
 
 export default function Page() {
+  const router = useRouter();
   return (
     <ImageBackground source={gifSource} resizeMode="cover" style={styles.image}>
       <View style={styles.container}> 
         <View style={styles.main}>
           <Text style={styles.title}>Social Skating</Text>
           <Text style={styles.subtitle}>A social media by skaters for skaters.</Text>
-          <Link href='/auth/landing'>
-            <Button
-              title='Test'
-            />
-          </Link>
+          <Button
+            title='Test'
+            onPress={() => {
+              router.push('/auth/landing');
+            }}
+          />
         </View>
       </View>
     </ImageBackground>

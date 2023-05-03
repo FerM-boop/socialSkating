@@ -1,6 +1,6 @@
 import { ImageBackground, StyleSheet, Text, View } from "react-native";
 import { Link } from "expo-router";
-import { Button } from "react-native-web";
+import { Button } from "react-native";
 
 const gifSource = require('../assets/skate_gif.gif')
 
@@ -11,6 +11,11 @@ export default function Page() {
         <View style={styles.main}>
           <Text style={styles.title}>Social Skating</Text>
           <Text style={styles.subtitle}>A social media by skaters for skaters.</Text>
+          <Link href='/auth/landing'>
+            <Button
+              title='Test'
+            />
+          </Link>
         </View>
       </View>
     </ImageBackground>

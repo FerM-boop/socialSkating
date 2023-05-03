@@ -11,11 +11,6 @@ export default function Page() {
         <View style={styles.main}>
           <Text style={styles.title}>Social Skating</Text>
           <Text style={styles.subtitle}>A social media by skaters for skaters.</Text>
-          <Link href="/auth/landing">
-            <Button
-              title= <Text>Get started</Text>
-            />
-          </Link>
         </View>
       </ImageBackground>
     </View>

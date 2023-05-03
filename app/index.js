@@ -1,4 +1,4 @@
-import { ImageBackground, StyleSheet, Text, View } from "react-native";
+import { ImageBackground, Pressable, StyleSheet, Text, View } from "react-native";
 import { useRouter } from "expo-router";
 import { Button } from "react-native";
 
@@ -12,12 +12,15 @@ export default function Page() {
         <View style={styles.main}>
           <Text style={styles.title}>Social Skating</Text>
           <Text style={styles.subtitle}>A social media by skaters for skaters.</Text>
-          <Button
+          <Pressable
+            style={styles.button}
             title='Test'
             onPress={() => {
               router.push('/auth/landing');
-            }}
-          />
+            }}>
+            <Text style={styles.buttonText}>➜</Text>
+            
+          </Pressable>
         </View>
       </View>
     </ImageBackground>
@@ -48,4 +51,20 @@ const styles = StyleSheet.create({
     fontSize: 36,
     color: "#38434D",
   },
+  button: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 20,
+    elevation: 3,
+    backgroundColor: '#0a0a0a',
+    height: 60,
+    width: 100,
+    opacity: 0.7,
+    margin: 5
+  },
+  buttonText: {
+    color: '#FFFFFF',
+  }
 });

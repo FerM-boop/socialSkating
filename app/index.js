@@ -1,6 +1,5 @@
 import { ImageBackground, Pressable, StyleSheet, Text, View } from "react-native";
 import { useRouter } from "expo-router";
-import { Button } from "react-native";
 
 const gifSource = require('../assets/skate_gif.gif')
 

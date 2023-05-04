@@ -13,7 +13,6 @@ export default function Page() {
           <Text style={styles.subtitle}>A social media by skaters for skaters.</Text>
           <Pressable
             style={styles.button}
-            title='Test'
             onPress={() => {
               router.push('/auth/landing');
             }}>

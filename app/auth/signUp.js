@@ -1,6 +1,10 @@
 import { Text, View, Pressable, TextInput, StyleSheet } from 'react-native'
 import React, { Component } from 'react'
 
+import firebase from "firebase/app";
+import 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { app } from './landing';
 
 export default class register extends Component {
   constructor(props) {
@@ -20,7 +24,15 @@ export default class register extends Component {
   }
 
   onSignUp(){
-    
+    const auth = getAuth(app)
+    const { email, password, password_confirm, username, first_name, last_name, age } = this.state;
+    createUserWithEmailAndPassword( auth, email, password)
+    .then((result) => {
+      console.log(result)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
   }
 
   render() {

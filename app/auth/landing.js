@@ -2,7 +2,27 @@ import { View, Text, Pressable, StyleSheet } from 'react-native'
 import React from 'react'
 import { useRouter } from "expo-router";
 
+import { initializeApp } from "firebase/app";
+
+import { FIREBASE_APIKEY, FIREBASE_AUTHDOMAIN, FIREBASE_PROJECTID, FIREBASE_STORAGEBUCKET, FIREBASE_MESSAGINGSENDERID, FIREBASE_APPID, FIREBASE_MEASUREMENTID  } from '@env'
+
+const firebaseConfig = {
+  apiKey: FIREBASE_APIKEY,
+  authDomain: FIREBASE_AUTHDOMAIN,
+  projectId: FIREBASE_PROJECTID,
+  storageBucket: FIREBASE_STORAGEBUCKET,
+  messagingSenderId: FIREBASE_MESSAGINGSENDERID,
+  appId: FIREBASE_APPID,
+  measurementId: FIREBASE_MEASUREMENTID
+};
+
+// Initialize Firebase
+
+
+
+
 export default function Landing() {
+  const app = initializeApp(firebaseConfig);
   const router = useRouter();
   return (
     <View style={styles.buttonContainer}>

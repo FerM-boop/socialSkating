@@ -2,8 +2,8 @@ import { Text, View, Pressable, TextInput, StyleSheet } from 'react-native'
 import React, { Component } from 'react'
 
 import 'firebase/auth';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-import { app, auth } from './landing';
+import { getAuth, createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { app, auth, googleProvider } from './landing';
 
 export default class register extends Component {
   constructor(props) {
@@ -34,9 +34,7 @@ export default class register extends Component {
   }
 
   onGoogleSignUp(){
-    const auth = getAuth(app)
-    const { email, password, password_confirm, username, first_name, last_name, age } = this.state;
-    createUserWithEmailAndPassword( auth, email, password)
+    signInWithPopup(auth, googleProvider)
     .then((result) => {
       console.log(result)
     })
@@ -81,7 +79,7 @@ export default class register extends Component {
         </Pressable>
         <Pressable
         style={styles.button}
-        onPress={() => this.onSignUp()}>
+        onPress={() => this.onGoogleSignUp()}>
         <Text style={styles.buttonText}>Sign Up with Google</Text>    
         </Pressable>
       </View>

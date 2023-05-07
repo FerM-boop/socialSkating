@@ -14,7 +14,7 @@ export default function Page() {
           <Pressable
             style={styles.button}
             onPress={() => {
-              router.push('/auth/landing');
+              router.push('/landing');
             }}>
             <Text style={styles.buttonText}>➜</Text>
             

@@ -2,8 +2,8 @@ import { Text, View, Pressable, TextInput, StyleSheet } from 'react-native'
 import React, { Component } from 'react'
 
 import 'firebase/auth';
-import { getAuth, createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
-import { app, auth, googleProvider } from './landing';
+import { createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { auth, googleProvider } from '../landing';
 
 export default class register extends Component {
   constructor(props) {

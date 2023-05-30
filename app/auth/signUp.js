@@ -5,7 +5,7 @@ import 'firebase/auth';
 import { createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { auth, googleProvider } from '../landing';
 
-export default class register extends Component {
+export default class signUp extends Component {
   constructor(props) {
     super(props);
 

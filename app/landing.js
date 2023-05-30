@@ -1,6 +1,6 @@
 import { View, Text, Pressable, StyleSheet } from 'react-native'
 import React, { Component } from 'react'
-import { useRouter } from "expo-router";
+
 
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, onAuthStateChanged, signOut } from "firebase/auth";
@@ -24,21 +24,19 @@ export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
 
-//Initialize router
-export const router = useRouter();
-
-
 export default class landing extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       loaded: false,
     }
-  }
 
+  }
+  
   componentDidMount() {
     onAuthStateChanged(auth, (user) => {
-      if(!user){
+     if(!user){
         this.setState({
           loggedIn: false,
           loaded: true,

@@ -5,7 +5,7 @@ import 'firebase/auth';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../landing';
 
-export default class register extends Component {
+export default class signIn extends Component {
   constructor(props) {
     super(props);
 

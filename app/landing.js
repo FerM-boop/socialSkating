@@ -1,5 +1,5 @@
 import { View, Text, Pressable, StyleSheet } from 'react-native'
-import React, { useState, useEffect, Component } from 'react'
+import React, { useState, useEffect } from 'react'
 
 
 import { initializeApp } from "firebase/app";

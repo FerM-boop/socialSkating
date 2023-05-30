@@ -1,5 +1,5 @@
 import { View, Text, Pressable, StyleSheet } from 'react-native'
-import React, { Component } from 'react'
+import React, { useState, useEffect, Component } from 'react'
 
 
 import { initializeApp } from "firebase/app";
@@ -24,86 +24,73 @@ export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
 
-export default class landing extends Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      loaded: false,
-    }
+export default function Landing() {
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [loaded, setLoaded] = useState(false);
 
-  }
-  
-  componentDidMount() {
+  useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-     if(!user){
-        this.setState({
-          loggedIn: false,
-          loaded: true,
-        })
-      }else {
-        this.setState({
-          loggedIn: true,
-          loaded: true,
-        })
+      if (!user) {
+        setLoggedIn(false);
+        setLoaded(true);
+      } else {
+        setLoggedIn(true);
+        setLoaded(true);
       }
-    })
-  }
+    });
+  }, []);
 
-  onSignOut(){
+  function onSignOut() {
     signOut(auth)
       .then((result) => {
-        console.log(result)
+        console.log(result);
       })
       .catch((error) => {
-        console.error(error)
-      })
-  } 
+        console.error(error);
+      });
+  }
 
-  render() {
-    const { loggedIn, loaded } = this.state;
-    if(!loaded){
-      return (
-        <View>
-          <Text style={{flex: 1, justifyContent: 'center', alignContent: 'center'}}>Loading...</Text>
-        </View>
-      )
-    }
+  if (!loaded) {
+    return (
+      <View>
+        <Text style={{ flex: 1, justifyContent: 'center', alignContent: 'center' }}>Loading...</Text>
+      </View>
+    );
+  }
 
-    if(!loggedIn){
-      return (
-        <View style={styles.buttonContainer}>
-          <Pressable
-            style={styles.button}
-            onPress={() => {
-              router.push('/auth/signUp');
-            }}>
-            <Text style={styles.buttonText}>Sign Up</Text>    
-          </Pressable>
-          <Pressable
-            style={styles.button}
-            onPress={() => {
-              router.push('/auth/signIn');
-            }}>
-            <Text style={styles.buttonText}>Sign In</Text>    
-          </Pressable>
-        </View>
-      )
-    }
-
+  if (!loggedIn) {
     return (
       <View style={styles.buttonContainer}>
         <Pressable
           style={styles.button}
           onPress={() => {
-           this.onSignOut()
+            router.push('/auth/signUp');
           }}>
-          <Text style={styles.buttonText}>Sign Out</Text>    
+          <Text style={styles.buttonText}>Sign Up</Text>
+        </Pressable>
+        <Pressable
+          style={styles.button}
+          onPress={() => {
+            router.push('/auth/signIn');
+          }}>
+          <Text style={styles.buttonText}>Sign In</Text>
         </Pressable>
       </View>
-    )
-
+    );
   }
+
+  return (
+    <View style={styles.buttonContainer}>
+      <Pressable
+        style={styles.button}
+        onPress={() => {
+          onSignOut();
+        }}>
+        <Text style={styles.buttonText}>Sign Out</Text>
+      </Pressable>
+    </View>
+  );
 }
 
 

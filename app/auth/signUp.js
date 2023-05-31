@@ -77,6 +77,7 @@ export default class signUp extends Component {
         onPress={() => this.onSignUp()}>
         <Text style={styles.buttonText}>Create Account</Text>    
         </Pressable>
+        <Text>or</Text>
         <Pressable
         style={styles.button}
         onPress={() => this.onGoogleSignUp()}>

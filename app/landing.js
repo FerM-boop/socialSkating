@@ -1,6 +1,7 @@
 import { View, Text, Pressable, StyleSheet } from 'react-native'
 import React, { useState, useEffect } from 'react'
 
+import { Stack, useRouter } from 'expo-router'
 
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, onAuthStateChanged, signOut } from "firebase/auth";
@@ -24,8 +25,9 @@ export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
 
-
+//Page export
 export default function Landing() {
+  const router = useRouter()
   const [loggedIn, setLoggedIn] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
@@ -54,6 +56,7 @@ export default function Landing() {
   if (!loaded) {
     return (
       <View>
+        <Stack.Screen options={{ headerShown: false }} />
         <Text style={{ flex: 1, justifyContent: 'center', alignContent: 'center' }}>Loading...</Text>
       </View>
     );
@@ -62,6 +65,7 @@ export default function Landing() {
   if (!loggedIn) {
     return (
       <View style={styles.buttonContainer}>
+        <Stack.Screen options={{ headerShown: false }} />
         <Pressable
           style={styles.button}
           onPress={() => {
@@ -82,6 +86,7 @@ export default function Landing() {
 
   return (
     <View style={styles.buttonContainer}>
+      <Stack.Screen options={{ headerShown: false }} />
       <Pressable
         style={styles.button}
         onPress={() => {

@@ -1,8 +1,18 @@
+// React Imports
 import { View, Text, Pressable, StyleSheet } from 'react-native'
 import React, { useState, useEffect } from 'react'
 
-import { Stack, useRouter } from 'expo-router'
+// Drawer Navigation Imports
+import { createDrawerNavigator } from '@react-navigation/drawer'
+import Chats from './chats'
+import Map from './map'
+import Profile from './profile' 
+import Settings from './settings';
 
+// Router
+import { useRouter } from 'expo-router'
+
+// Auth Imports
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, onAuthStateChanged, signOut } from "firebase/auth";
 
@@ -21,9 +31,39 @@ const firebaseConfig = {
   measurementId: FIREBASE_MEASUREMENTID
 };
 
+// Initalize Drawer
+const Drawer = createDrawerNavigator();
+
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
+
+//Sign Out BTN Function
+function onSignOut() {
+  signOut(auth)
+    .then((result) => {
+      console.log(result);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+// Landing Page
+
+function HomeScreen() {
+  return (
+    <View style={styles.buttonContainer}>
+      <Pressable
+        style={styles.button}
+        onPress={() => {
+          onSignOut();
+        }}>
+        <Text style={styles.buttonText}>Sign Out</Text>
+      </Pressable>
+    </View>
+  );
+}
 
 //Page export
 export default function Landing() {
@@ -43,29 +83,18 @@ export default function Landing() {
     });
   }, []);
 
-  function onSignOut() {
-    signOut(auth)
-      .then((result) => {
-        console.log(result);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
-
   if (!loaded) {
     return (
       <View>
-        <Stack.Screen options={{ headerShown: false }} />
         <Text style={{ flex: 1, justifyContent: 'center', alignContent: 'center' }}>Loading...</Text>
       </View>
     );
   }
 
+  // NOT Logged In Screen
   if (!loggedIn) {
     return (
       <View style={styles.buttonContainer}>
-        <Stack.Screen options={{ headerShown: false }} />
         <Pressable
           style={styles.button}
           onPress={() => {
@@ -84,21 +113,19 @@ export default function Landing() {
     );
   }
 
+  // Logged In Screen
   return (
-    <View style={styles.buttonContainer}>
-      <Stack.Screen options={{ headerShown: false }} />
-      <Pressable
-        style={styles.button}
-        onPress={() => {
-          onSignOut();
-        }}>
-        <Text style={styles.buttonText}>Sign Out</Text>
-      </Pressable>
-    </View>
+    <Drawer.Navigator>
+      <Drawer.Screen name="Landing" component={HomeScreen}/>
+      <Drawer.Screen name="DM's" component={Chats}/>
+      <Drawer.Screen name="Map" component={Map}/>
+      <Drawer.Screen name="Profile" component={Profile}/>
+      <Drawer.Screen name="Settings" component={Settings}/>
+    </Drawer.Navigator>
   );
 }
 
-
+// Styling
 const styles = StyleSheet.create({
   container: {
     flex: 1,

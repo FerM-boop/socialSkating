@@ -1,16 +1,16 @@
 import { ImageBackground, Pressable, StyleSheet, Text, View } from "react-native";
-import { Stack, useRouter } from 'expo-router'
+import { useRouter } from 'expo-router'
 
+// Loading Background Img Before
 const gifSource = require('../assets/skate_gif.gif')
 
 
-//Page export
+// Page export
 export default function Page() {
   const router = useRouter();
   return (
     <ImageBackground source={gifSource} resizeMode="cover" style={styles.image}>
       <View style={styles.container}> 
-      <Stack.Screen options={{ headerShown: false }} />
         <View style={styles.main}>
           <Text style={styles.title}>Social Skating</Text>
           <Text style={styles.subtitle}>A social media by skaters for skaters.</Text>
@@ -27,6 +27,7 @@ export default function Page() {
   );
 }
 
+// Styling
 const styles = StyleSheet.create({
   container: {
     flex: 1,

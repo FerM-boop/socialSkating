@@ -42,7 +42,10 @@ export default class signIn extends Component {
         />
         <Pressable
         style={styles.button}
-        onPress={() => this.onSignIn()}>
+        onPress={() => {
+          this.onSignIn()
+        }
+        }>
         <Text style={styles.buttonText}>Sign In</Text>    
         </Pressable>
       </View>

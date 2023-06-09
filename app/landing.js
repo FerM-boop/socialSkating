@@ -131,10 +131,10 @@ export default function Landing() {
   return (
     <Drawer.Navigator>
       <Drawer.Screen name="Landing" component={HomeScreen}/>
-      <Drawer.Screen name="DM's" component={Chats}/>
-      <Drawer.Screen name="Map" component={Map}/>
-      <Drawer.Screen name="Profile" component={Profile}/>
-      <Drawer.Screen name="Settings" component={Settings}/>
+      <Drawer.Screen name="DM's" component={Chats} />
+      <Drawer.Screen name="Map" component={Map} />
+      <Drawer.Screen name="Profile" component={Profile} />
+      <Drawer.Screen name="Settings" component={Settings} />
     </Drawer.Navigator>
   );
 }

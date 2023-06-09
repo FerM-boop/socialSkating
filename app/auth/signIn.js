@@ -1,12 +1,11 @@
 import { Text, View, Pressable, TextInput, StyleSheet } from 'react-native'
 import React, { Component } from 'react'
 
-import 'firebase/auth';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../landing';
 
 export default class SignIn extends Component {
-  constructor(props) {
+  constructor(props) { 
     super(props);
 
     this.state = {

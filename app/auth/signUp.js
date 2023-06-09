@@ -2,7 +2,7 @@ import { Text, View, Pressable, TextInput, StyleSheet } from 'react-native'
 import React, { Component } from 'react'
 
 import 'firebase/auth';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth } from '../landing';
 
 export default class signUp extends Component {
@@ -27,9 +27,16 @@ export default class signUp extends Component {
     createUserWithEmailAndPassword( auth, email, password)
     .then((result) => {
       console.log(result)
+      updateProfile(auth.currentUser, {
+        displayName: username
+      }).then(() => {
+        console.log('Username update successfuly')
+      }).catch((error) => {
+        console.error(error)
+      });
     })
     .catch((error) => {
-      console.log(error)
+      console.error(error)
     })
   }
 

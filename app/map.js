@@ -34,23 +34,16 @@ export default function Map() {
 
   return (
     <View style={styles.container}>
-      <Pressable
-        style={styles.button}
-        onPress={() => {
-          userLocation()
-        }}>
-        <Text>
-        Get Location
-        </Text>
-      </Pressable>
       <MapView style={styles.map} 
         region={mapRegion}
       >
-      <Marker coordinate={mapRegion} title='Marker'/>
       </MapView>
     </View>
   );
 }
+//Marker Template:
+//<Marker coordinate={mapRegion} title='Marker'/> (goes inside MapView tag)
+
 
 const styles = StyleSheet.create({
   container: {

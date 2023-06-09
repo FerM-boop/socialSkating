@@ -2,8 +2,8 @@ import { Text, View, Pressable, TextInput, StyleSheet } from 'react-native'
 import React, { Component } from 'react'
 
 import 'firebase/auth';
-import { createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
-import { auth, googleProvider } from '../landing';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../landing';
 
 export default class signUp extends Component {
   constructor(props) {
@@ -25,16 +25,6 @@ export default class signUp extends Component {
   onSignUp(){
     const { email, password, password_confirm, username, first_name, last_name, age } = this.state;
     createUserWithEmailAndPassword( auth, email, password)
-    .then((result) => {
-      console.log(result)
-    })
-    .catch((error) => {
-      console.log(error)
-    })
-  }
-
-  onGoogleSignUp(){
-    signInWithPopup(auth, googleProvider)
     .then((result) => {
       console.log(result)
     })
@@ -76,12 +66,6 @@ export default class signUp extends Component {
         style={styles.button}
         onPress={() => this.onSignUp()}>
         <Text style={styles.buttonText}>Create Account</Text>    
-        </Pressable>
-        <Text>or</Text>
-        <Pressable
-        style={styles.button}
-        onPress={() => this.onGoogleSignUp()}>
-        <Text style={styles.buttonText}>Sign Up with Google</Text>    
         </Pressable>
       </View>
     )

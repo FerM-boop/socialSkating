@@ -7,14 +7,16 @@ import { createDrawerNavigator } from '@react-navigation/drawer'
 import Chats from './chats'
 import Map from './map'
 import Profile from './profile' 
-import Settings from './settings';
+import Settings from './settings'
+import SignIn from './auth/signIn'
+
 
 // Router
 import { useRouter } from 'expo-router'
 
 // Auth Imports
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, onAuthStateChanged, signOut } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, onAuthStateChanged, signOut, signInWithPopup } from "firebase/auth";
 
 // Importing environmental variables
 import { FIREBASE_APIKEY, FIREBASE_AUTHDOMAIN, FIREBASE_PROJECTID, FIREBASE_STORAGEBUCKET, FIREBASE_MESSAGINGSENDERID, FIREBASE_APPID, FIREBASE_MEASUREMENTID  } from '@env'
@@ -37,6 +39,17 @@ const Drawer = createDrawerNavigator();
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
+
+//Sign In with Google Function
+function onGoogleSignIn(){
+/*  signInWithPopup(auth, googleProvider)
+    .then((result) => {
+      console.log(result)
+    })
+    .catch((error) => {
+      console.log(error)
+    })*/
+}
 
 //Sign Out BTN Function
 function onSignOut() {
@@ -95,19 +108,20 @@ export default function Landing() {
   if (!loggedIn) {
     return (
       <View style={styles.buttonContainer}>
+        <SignIn />
+        <Pressable
+          style={styles.button}
+          onPress={() => {
+            onGoogleSignIn()
+          }}>
+          <Text style={styles.buttonText}>Sign In with Google</Text>
+        </Pressable>
         <Pressable
           style={styles.button}
           onPress={() => {
             router.push('/auth/signUp');
           }}>
           <Text style={styles.buttonText}>Sign Up</Text>
-        </Pressable>
-        <Pressable
-          style={styles.button}
-          onPress={() => {
-            router.push('/auth/signIn');
-          }}>
-          <Text style={styles.buttonText}>Sign In</Text>
         </Pressable>
       </View>
     );

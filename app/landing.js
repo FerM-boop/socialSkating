@@ -16,7 +16,7 @@ import { useRouter } from 'expo-router'
 
 // Auth Imports
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, onAuthStateChanged, signOut, signInWithPopup } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from "firebase/auth";
 
 // Importing environmental variables
 import { FIREBASE_APIKEY, FIREBASE_AUTHDOMAIN, FIREBASE_PROJECTID, FIREBASE_STORAGEBUCKET, FIREBASE_MESSAGINGSENDERID, FIREBASE_APPID, FIREBASE_MEASUREMENTID  } from '@env'
@@ -51,29 +51,12 @@ function onGoogleSignIn(){
     })*/
 }
 
-//Sign Out BTN Function
-function onSignOut() {
-  signOut(auth)
-    .then((result) => {
-      console.log(result);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-}
-
 // Landing Page
 
 function HomeScreen() {
   return (
     <View style={styles.buttonContainer}>
-      <Pressable
-        style={styles.button}
-        onPress={() => {
-          onSignOut();
-        }}>
-        <Text style={styles.buttonText}>Sign Out</Text>
-      </Pressable>
+    <Text>Landing Page</Text>
     </View>
   );
 }
